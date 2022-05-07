@@ -45,7 +45,7 @@ print("  ")
 @client.event
 async def on_ready():
     extrem_map = {}
-    print(f"Loggato in: {client.user}")
+    print(f"Access in: {client.user}")
     print("Server Cloner")
     guild_from = client.get_guild(int(input_guild_id))
     guild_to = client.get_guild(int(output_guild_id))

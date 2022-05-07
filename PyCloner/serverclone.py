@@ -23,11 +23,11 @@ class Clone:
                 try:
                     if role.name != "@everyone":
                         await role.delete()
-                        print_delete(f"Ruolo rimosso: {role.name}")
+                        print_delete(f"Role removed: {role.name}")
                 except discord.Forbidden:
-                    print_error(f"Errore durante l'eliminazione del ruolo: {role.name}")
+                    print_error(f"Error while deleting the role: {role.name}")
                 except discord.HTTPException:
-                    print_error(f"Impossibile eliminare il ruolo: {role.name}")
+                    print_error(f"The role could not be deleted: {role.name}")
 
     @staticmethod
     async def roles_create(guild_to: discord.Guild, guild_from: discord.Guild):
@@ -46,22 +46,22 @@ class Clone:
                     hoist=role.hoist,
                     mentionable=role.mentionable
                 )
-                print_add(f"Ruolo creato {role.name}")
+                print_add(f"Role created {role.name}")
             except discord.Forbidden:
-                print_error(f"Errore durante la creazione del ruolo: {role.name}")
+                print_error(f"Error while creating the role: {role.name}")
             except discord.HTTPException:
-                print_error(f"Impossibile creare il ruolo: {role.name}")
+                print_error(f"Unable to create role: {role.name}")
 
     @staticmethod
     async def channels_delete(guild_to: discord.Guild):
         for channel in guild_to.channels:
             try:
                 await channel.delete()
-                print_delete(f"Canale eliminato: {channel.name}")
+                print_delete(f"Channel deleted: {channel.name}")
             except discord.Forbidden:
-                print_error(f"Errore durante l'eliminazione del canale: {channel.name}")
+                print_error(f"Error while deleting the channel: {channel.name}")
             except discord.HTTPException:
-                print_error(f"Impossibile eliminare il canale: {channel.name}")
+                print_error(f"Unable to delete the channel: {channel.name}")
 
     @staticmethod
     async def categories_create(guild_to: discord.Guild, guild_from: discord.Guild):
@@ -78,11 +78,11 @@ class Clone:
                     name=channel.name,
                     overwrites=overwrites_to)
                 await new_channel.edit(position=channel.position)
-                print_add(f"Categoria creata: {channel.name}")
+                print_add(f"Category created: {channel.name}")
             except discord.Forbidden:
-                print_error(f"Errore durante l'eliminazione della categoria: {channel.name}")
+                print_error(f"Error while deleting the category: {channel.name}")
             except discord.HTTPException:
-                print_error(f"Impossibile eliminare la categoria: {channel.name}")
+                print_error(f"Unable to delete category: {channel.name}")
 
     @staticmethod
     async def channels_create(guild_to: discord.Guild, guild_from: discord.Guild):
@@ -96,7 +96,7 @@ class Clone:
                         if category.name == channel_text.category.name:
                             break
                     except AttributeError:
-                        print_warning(f"il canale {channel_text.name} non ha alcuna categoria!")
+                        print_warning(f"the channel {channel_text.name} it has no category!")
                         category = None
                         break
 
@@ -119,13 +119,13 @@ class Clone:
                         position=channel_text.position)
                 if category is not None:
                     await new_channel.edit(category=category)
-                print_add(f"Canale di testo creato: {channel_text.name}")
+                print_add(f"Text channel created: {channel_text.name}")
             except discord.Forbidden:
-                print_error(f"Errore durante la creazione del canale di testo: {channel_text.name}")
+                print_error(f"Error creating text channel {channel_text.name}")
             except discord.HTTPException:
-                print_error(f"Impossibile creare un canale di testo: {channel_text.name}")
+                print_error(f"Unable to create a text channel: {channel_text.name}")
             except:
-                print_error(f"Errore durante la creazione del canale di testo: {channel_text.name}")
+                print_error(f"Error creating text channel {channel_text.name}")
 
         category = None
         for channel_voice in guild_from.voice_channels:
@@ -135,7 +135,7 @@ class Clone:
                         if category.name == channel_voice.category.name:
                             break
                     except AttributeError:
-                        print_warning(f"Il canale {channel_voice.name} non ha alcuna categoria!")
+                        print_warning(f"The channel {channel_voice.name} it has no category!")
                         category = None
                         break
 
@@ -158,13 +158,13 @@ class Clone:
                         position=channel_voice.position)
                 if category is not None:
                     await new_channel.edit(category=category)
-                print_add(f"Canale vocale creato: {channel_voice.name}")
+                print_add(f"Voice channel created: {channel_voice.name}")
             except discord.Forbidden:
-                print_error(f"Errore durante la creazione del canale vocale: {channel_voice.name}")
+                print_error(f"Error while creating the voice channel: {channel_voice.name}")
             except discord.HTTPException:
-                print_error(f"Impossibile creare un canale vocale: {channel_voice.name}")
+                print_error(f"Unable to create a voice channel: {channel_voice.name}")
             except:
-                print_error(f"Errore durante la creazione del canale vocale: {channel_voice.name}")
+                print_error(f"Error while creating the voice channel: {channel_voice.name}")
 
 
     @staticmethod
@@ -172,11 +172,11 @@ class Clone:
         for emoji in guild_to.emojis:
             try:
                 await emoji.delete()
-                print_delete(f"Emoji eliminata: {emoji.name}")
+                print_delete(f"Emoji deleted: {emoji.name}")
             except discord.Forbidden:
-                print_error(f"Errore durante l'eliminazione di Emoji{emoji.name}")
+                print_error(f"Error while deleting Emoji{emoji.name}")
             except discord.HTTPException:
-                print_error(f"Errore durante l'eliminazione di Emoji {emoji.name}")
+                print_error(f"Error while deleting Emoji {emoji.name}")
 
     @staticmethod
     async def emojis_create(guild_to: discord.Guild, guild_from: discord.Guild):
@@ -187,11 +187,11 @@ class Clone:
                 await guild_to.create_custom_emoji(
                     name=emoji.name,
                     image=emoji_image)
-                print_add(f"Emoji creato {emoji.name}")
+                print_add(f"Emoji created {emoji.name}")
             except discord.Forbidden:
-                print_error(f"Errore durante la creazione di emoji {emoji.name} ")
+                print_error(f"Error creating emoji {emoji.name} ")
             except discord.HTTPException:
-                print_error(f"Errore durante la creazione di emoji {emoji.name}")
+                print_error(f"Error creating emoji {emoji.name}")
 
     @staticmethod
     async def guild_edit(guild_to: discord.Guild, guild_from: discord.Guild):
@@ -199,14 +199,14 @@ class Clone:
             try:
                 icon_image = await guild_from.icon_url.read()
             except discord.errors.DiscordException:
-                print_error(f"Impossibile leggere l'immagine dell'icona da {guild_from.name}")
+                print_error(f"Unable to read icon image from {guild_from.name}")
                 icon_image = None
             await guild_to.edit(name=f'{guild_from.name}')
             if icon_image is not None:
                 try:
                     await guild_to.edit(icon=icon_image)
-                    print_add(f"Icona della gilda cambiata: {guild_to.name}")
+                    print_add(f"Guild icon changed: {guild_to.name}")
                 except:
-                    print_error(f"Errore durante la modifica dell'icona della gilda: {guild_to.name}")
+                    print_error(f"Error while changing guild icon: {guild_to.name}")
         except discord.Forbidden:
-            print_error(f"Errore durante la modifica dell'icona della gilda: {guild_to.name}")
+            print_error(f"Error when changing the guild icon: {guild_to.name}")
